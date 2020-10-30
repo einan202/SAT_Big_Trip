@@ -1,4 +1,4 @@
-# Description
+# SAT Big Trip
 
 An assignment worked on that involves also a SAT Solver.
 It's name because of flights list input between cities.
