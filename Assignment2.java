@@ -4,7 +4,7 @@ public class Assignment2 {
 	// Task 1
 	public static boolean isSquareMatrix(boolean[][] matrix) {
 
-		boolean isSquare = notNull(matrix);                 // no length or cells checks if null array
+		boolean isSquare = notNull(matrix);                      // no length or cells checks if null array
 
 		for (int x = 0; isSquare && (x < matrix.length); x = x + 1) {
 
@@ -35,9 +35,9 @@ public class Assignment2 {
 	// Task 2
 	public static boolean isSymmetricMatrix(boolean[][] matrix) {
 
-		boolean isSymmetric = notNull(matrix);                                       // no cells check if null array
+		boolean isSymmetric = notNull(matrix);                                          // no cells check if null array
 
-		for (int i = 0; isSymmetric && (i < matrix.length - 1); i = i + 1) {         // keeps 'j in bounds
+		for (int i = 0; isSymmetric && (i < matrix.length - 1); i = i + 1) {            // keeps 'j in bounds
 
 			for (int j = i + 1; isSymmetric & (j < matrix.length); j = j + 1) {     // no double checks for same partners
 
@@ -54,7 +54,7 @@ public class Assignment2 {
 	// Task 3
 	public static boolean isAntiReflexiveMatrix(boolean[][] matrix) {
 
-		boolean isAntiReflexive = notNull(matrix);        // no cells check if null array
+		boolean isAntiReflexive = notNull(matrix);             // no cells check if null array
 
 		for (int x = 0; isAntiReflexive && (x < matrix.length); x = x + 1) {
 
@@ -69,7 +69,7 @@ public class Assignment2 {
 	// Task 4
 	public static boolean isLegalInstance(boolean[][] matrix) {
 
-		boolean isLegal = notNull(matrix);                // null matrix not legal - no other checks
+		boolean isLegal = notNull(matrix);                   // null matrix not legal - no other checks
 
 		if (isLegal) {
 
@@ -87,7 +87,7 @@ public class Assignment2 {
 	// Task 5
 	public static boolean isPermutation(int[] array) {
 
-		boolean isPermutation = true;                           // assumes array is'nt null
+		boolean isPermutation = true;                                               // assumes array is'nt null
 
 		for (int i = 0; isPermutation & (i < array.length); i = i + 1) {
 
@@ -189,7 +189,7 @@ public class Assignment2 {
 			destination = tour[i + 1];
 
 		else {
-			destination = tour[0]; 					    // last city back to first one
+			destination = tour[0]; 		       // last city back to first one
 		}
 
 		return destination;
@@ -244,7 +244,7 @@ public class Assignment2 {
 		int combinations = ((vars.length) * (vars.length - 1)) / 2;    // couples possible combinations
 		int[][] cnf = new int[combinations][2];                        // each condition is a clause
 
-		return atMostFormula(vars, cnf, 0);                    // separate counter for clause index
+		return atMostFormula(vars, cnf, 0);                            // separate counter for clause index
 	}
 
 
@@ -253,7 +253,7 @@ public class Assignment2 {
 
 		for (int x = 0; x < vars.length; x = x + 1) {
 
-			for (int y = x + 1; y < vars.length; y = y + 1) {          // prevents double combinations
+			for (int y = x + 1; y < vars.length; y = y + 1) {              // prevents double combinations
 
 				int[] clause = {-(vars[x]), -(vars[y])};               // party couples formula
 				cnf[counter] = clause;
@@ -280,7 +280,7 @@ public class Assignment2 {
 	public static int[][] exactlyOneFormula(int[] vars, int[][] cnf, int combinations) {
 		// creates one formula of atLeast and atMost together
 
-		cnf[0] = atLeastOne(vars)[0];                       // insures minimum one true
+		cnf[0] = atLeastOne(vars)[0];                           // insures minimum one true
 
 		for (int x = 1; x <= combinations; x = x + 1) {
 
@@ -295,12 +295,12 @@ public class Assignment2 {
 	// Task 11
 	public static boolean[] solveExactlyOneForEachSet(int[][] varSets) {
 
-		SATSolver.init(varsMaxValue(varSets));               // enables SAT working with all set's vars
+		SATSolver.init(varsMaxValue(varSets));                    // enables SAT working with all set's vars
 
 		for (int s = 0; s < varSets.length; s = s + 1)
-			SATSolver.addClauses(exactlyOne(varSets[s]));    // each Formula for a set
+			SATSolver.addClauses(exactlyOne(varSets[s]));     // each Formula for a set
 
-		timeOutException(SATSolver.getSolution());           // exception for null solution
+		timeOutException(SATSolver.getSolution());               // exception for null solution
 		return SATSolver.getSolution();
 	}
 
@@ -419,7 +419,7 @@ public class Assignment2 {
 	public static int[][] upsideMap(int[][] map) {
 		// creates a flipped map
 
-		int[][] upsidemap = new int[map.length][map.length];      // separate to not change original
+		int[][] upsidemap = new int[map.length][map.length];               // separate to not change original
 
 		for (int i = 0; i < map.length; i = i + 1) {
 
@@ -437,7 +437,7 @@ public class Assignment2 {
 	// Task 16
 	public static int[][] noIllegalSteps(boolean[][] flights, int[][] map) {
 
-		int [][] nonFlights = nonFlightsArray(flights);    // non-flight cities list
+		int [][] nonFlights = nonFlightsArray(flights);                    // non-flight cities list
 		int nonCouples = nonFlights.length;				   // non flights counter
 
 		int [][] cnf = new int [(1 + 2 * (map.length - 1)) * nonCouples][];
@@ -533,7 +533,7 @@ public class Assignment2 {
 		for (int j = 0; j < flights.length - 1; j = j + 1) {
 			for (int k = j + 1; k < flights.length; k = k + 1) {
 
-				if (j != k & !flightExist(flights, j, k)) {  // assumes Anti-reflexive
+				if (j != k & !flightExist(flights, j, k)) {       // assumes Anti-reflexive
 
 					nonFlights = nonFlights + 1;
 
@@ -551,7 +551,7 @@ public class Assignment2 {
 		if (flights == null || !isLegalInstance(flights))                         // checks null before calling function
 			throw new IllegalArgumentException("flights array is illegal");
 
-		if (map == null || !validMap(map, createVarsMap(flights.length)))     // assumes flights check passed ok
+		if (map == null || !validMap(map, createVarsMap(flights.length)))        // assumes flights check passed ok
 			throw new IllegalArgumentException("map does not match");
 
 		insertClauses(flights, map);
@@ -564,7 +564,7 @@ public class Assignment2 {
 		boolean validMap = (map.length == legalMap.length);
 
 		for (int x = 0; validMap & x < map.length; x = x + 1) {
-			validMap = (map[x] != null && map[x].length == legalMap[x].length); // checks null before lengths
+			validMap = (map[x] != null && map[x].length == legalMap[x].length);      // checks null before lengths
 
 			for (int y = 0; validMap & y < map.length; y = y + 1) {
 				validMap = (map[x][y] == legalMap[x][y]);                        // same var number
@@ -615,11 +615,11 @@ public class Assignment2 {
 
 		int[] solution = new int[n];
 
-		for (int i = 1; i < assignment.length; i = i + 1) {    // first is irrelevant
+		for (int i = 1; i < assignment.length; i = i + 1) {            // first is irrelevant
 
-			if (assignment[i]) {
+			if (assignment[i]) { 
 
-				int mapIndex = mapIndex(map, n, i - 1);  // minus irrelevant one
+				int mapIndex = mapIndex(map, n, i - 1);        // minus irrelevant one
 				solution[(i - 1) / n] = (mapIndex - 1) % n;    // max n * n divided by 'n', map starts from one
 
 			}
@@ -646,61 +646,7 @@ public class Assignment2 {
 		if (assignment == null)				// enough checking time
 			throw new IllegalArgumentException("TIMEOUT");
 
-		return decode(assignment, map);    // assumes assignment != null
-	}
-
-
-	// Task 20
-	public static boolean solve2(boolean[][] flights) {
-
-		if (flights == null | !isLegalInstance(flights))
-			throw new IllegalArgumentException("flights array is illegal");
-
-		int [] solutionA = solve(flights);
-
-		int counter = 1; int checks = 0;  	// decided to try two other options
-
-		while (checks < 2 & counter < 2) {
-
-			int [] solutionB = solve(flights);
-
-			if (!sameSolutions(solutionA, solutionB))
-				counter = counter + 1;      // another legal solutions
-
-			checks = checks + 1;
-		}
-
-		return counter == 2;
-	}
-
-
-	public static boolean sameSolutions(int [] solA, int [] solB) {
-	// checks if two solutions are the same
-
-		if (solA == null | solB == null)        // insures nullity before lengths
-			throw new IllegalArgumentException("TIMEOUT");
-
-		boolean isSame = (solA.length == solB.length);
-
-		boolean found;
-		for (int a = 0 ; a < solA.length & isSame; a = a + 1) {
-
-			int value = solA[a]; found = false;
-
-			for (int b = 0 ; b < solA.length & !found ; b = b + 1){
-
-				if (solB[b] == value)           // each value in 'a' appears in 'b'
-					found = true;
-
-				else isSame = false;            // not same if not found
-
-			}
-
-			if (found) isSame = true;
-
-		}
-
-		return isSame;
+		return decode(assignment, map);                // assumes assignment != null
 	}
 
 }
